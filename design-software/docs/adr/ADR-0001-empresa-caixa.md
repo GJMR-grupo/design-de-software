@@ -1,26 +1,26 @@
-# ADR-0001: Uso de cache para consultas de saldo
+# ADR-0001: Melhorar a consulta de saldo
 
 ## Status
 Proposto
 
 ## Contexto
 
-A CaixaDigital é uma instituição financeira fictícia que atende muitos clientes diariamente. Em horários de pico, muitas pessoas acessam o aplicativo ao mesmo tempo para consultar o saldo da conta, o que gera muitas consultas ao banco de dados e deixa o sistema mais lento.
+A CaixaDigital é uma empresa fictícia criada para esta atividade. O sistema apresenta lentidão quando muitas pessoas acessam o aplicativo ao mesmo tempo para consultar o saldo da conta.
 
 ## Decisão
 
-Vamos utilizar um sistema de cache para armazenar temporariamente as consultas de saldo. Dessa forma, consultas repetidas poderão ser respondidas rapidamente, reduzindo o peso no banco de dados.
+Decidimos guardar temporariamente as consultas de saldo para que o sistema não precise buscar a mesma informação no banco de dados toda hora. Assim, as consultas ficam mais rápidas.
 
 ## Alternativas Consideradas
 
-- Consultar o banco de dados em todas as requisições: descartada porque aumenta o tempo de resposta e sobrecarrega o banco.
-- Aumentar apenas a capacidade do servidor: descartada porque aumenta os custos e não resolve o problema de forma eficiente.
+- Buscar o saldo diretamente no banco de dados em todas as consultas: não foi escolhida porque pode deixar o sistema mais lento quando muitas pessoas acessam ao mesmo tempo.
+- Melhorar apenas o servidor: não foi escolhida porque aumentaria o custo e não resolveria o problema sozinho.
 
 ## Consequências
 
-- As consultas de saldo serão mais rápidas para o usuário.
-- O banco de dados receberá menos acessos repetitivos.
-- Será necessário manter o cache atualizado sempre que houver movimentação na conta, para evitar informações desatualizadas.
+- O usuário consegue consultar o saldo mais rapidamente.
+- O banco de dados recebe menos consultas repetidas.
+- Será preciso atualizar as informações quando o saldo da conta mudar.
 
 ---
 
