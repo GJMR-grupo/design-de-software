@@ -12,6 +12,4 @@ Repositório da disciplina de Design de Software.
 
 ## Estrutura
 
-docs/
-├── adr/
-└── diagramas/
+docs/adr
